@@ -4,8 +4,8 @@ var connection = mysql.createConnection({
   host: 'localhost',
   port: '3306',
   user: 'root',
-  password: 'password',
-  database: ''
+  password: 'Jansen.02',
+  database: 'Project'
 })
 
 function createPost(title, description, image_url, callback) {
@@ -25,4 +25,19 @@ function createPost(title, description, image_url, callback) {
       callback(null, result.insertId)
     })
   }
+
+  function getPost(callback){
+    const query = `SELECT * FROM posts`
+
+    connection.query(query, params, (error, result) => {
+      if (error) {
+        callback(error)
+        return
+      }
+      callback(null, result.insertId)
+    })
+  }
+
+  exports.createPost = createPost
+  exports.getPost = getPost
   
