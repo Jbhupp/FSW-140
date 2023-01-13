@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
     port: "3306",
     user: 'root',
     password: 'Jansen.02',
-    database: 'Project',
+    database: 'avengers',
 });
 
 connection.connect((err) => {
@@ -25,7 +25,7 @@ connection.connect((err) => {
 
 app.get('/getPost', (req, res) => {
 
-    let sqlString = "SELECT * FROM ProjectTable"
+    let sqlString = "SELECT * FROM avengers"
     connection.query(sqlString, (err, result) => {
         console.log(connection, 'connection')
         if (err){
@@ -38,7 +38,7 @@ app.get('/getPost', (req, res) => {
 
 function getPost (callback){
 
-    const query = "SELECT * FROM ProjectTable"
+    const query = "SELECT * FROM avengers"
     connection.query(query, (err, result) => {
         
         if (err){
@@ -48,8 +48,8 @@ function getPost (callback){
     })
 }
 
-app.get('/GetPosts/:id', (req, res) => {
-    let sqlString = `SELECT * FROM ProjectTable WHERE PostID = ${req.params.id}`
+app.get('/GetPosts/:url', (req, res) => {
+    let sqlString = `SELECT * FROM avengers WHERE url = '${req.params.url}'`
   
     connection.query(sqlString, (err, result) => {
         if (err){
@@ -64,10 +64,10 @@ app.post('/insertNewPost', (req, res) =>{
     console.log(req.body)
 
     let row = {
-        description: req.body.description,
-        image_url: req.body.image_url
+        name: req.body.name,
+        url: req.body.url
     }
-    let sqlString = "INSERT INTO ProjectTable SET ? "
+    let sqlString = "INSERT INTO avengers SET ? "
     connection.query(sqlString, row, (err, result) => {
         if (err){
             throw err;
@@ -77,22 +77,22 @@ app.post('/insertNewPost', (req, res) =>{
     })
 }) 
   
-function insertNewPost(description, image_url, callback){
-    const query = `INSERT INTO ProjectTable(description, image_url) VALUES (${params})`
-    const params = [description, image_url]
+function insertNewPost(name, url, callback){
+    const query = `INSERT INTO avengers(name, url) VALUES (${params})`
+    const params = [name, url]
 
     connection.query(query, params, (err, result) => {
         if (err){
             callback(err)
             return;
         }
-        callback(null, result.insertID)
+        callback(null, result.inserturl)
     })
 }
 
-app.put('/update/:id', (req, res)=>{
-    let newPost = " "
-    let sqlString = `UPDATE ProjectTable SET description = ${newPost} WHERE postID = ${req.params.id}`
+app.put('/update/:url', (req, res)=>{
+    let newPost = req.body.name
+    let sqlString = `UPDATE avengers SET name = '${newPost}' WHERE url = '${req.params.url}'`
 
     connection.query(sqlString, (err, result) => {
         if (err){
@@ -103,9 +103,9 @@ app.put('/update/:id', (req, res)=>{
     })
 })
 
-app.delete('/delete/:id', (req, res)=>{
+app.delete('/delete/:url', (req, res)=>{
     
-    let sqlString = `DELETE FROM ProjectTable WHERE postID = ${req.params.id}`
+    let sqlString = `DELETE FROM avengers WHERE url = '${req.params.url}'`
 
     connection.query(sqlString, (err, result) => {
         if (err){
