@@ -18,56 +18,17 @@ body{
   h1{
     display: inline-block;
     margin-right:30px;
-    color: #279188;
+    color:white;
   }
   h3{
     display: inline-block;
     margin-top: 20px;
     left:80px;
     right:30px;
-    color: #279188;
+    color:white;
+  }
+
+  p{
+    color: red
   }
   
-  form{
-    margin: 100px auto 0 auto;
-    /* display: flex;
-    flex-direction: column; */
-    width: 900px;
-  }
-  
-  form > * {
-    margin: 5px 0;
-    padding: 0;
-  }
-  
-  .picFile{
-    display: inline-block;
-    background-color: transparent;
-  }
-  
-  .textArea{
-    display: inline-block;
-    width: 300px;
-    opacity: 75%;
-  }
-  
-  button{
-    display: inline-block;
-    width: 65px;
-    margin-left: 5px;
-    opacity: 75%;
-  }
-  
-  figure{
-    width: 600px;
-    margin:50px auto;
-  }
-  
-  img{
-    width: 300px
-  }
-  
-  /* #display{
-    height: 80px;
-    background-color: red;
-  } */
