@@ -7,7 +7,7 @@ function Post({post, deletePost, updatePost, addPost}){
 
     const [updateToggle, setUpdateToggle] = useState(true)
     const handleChange = (e) => {
-        var {value, title, description, url, name, current, appearances, gender} = e.target
+        var {value, title, description, url, name, current, gender, appearances} = e.target
         setInput({
             ...input, 
             [title]: value,
@@ -15,9 +15,9 @@ function Post({post, deletePost, updatePost, addPost}){
             [url]: value,
             [name]: value,
             [current]: value,
-            [appearances]: value,
             [gender]: value,
-
+            [appearances]: value,
+            
         })
     }
 
